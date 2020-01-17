@@ -21,3 +21,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# vendor/bundle
+/vendor/bundle
+
+# Mac
+/.DS_Store
