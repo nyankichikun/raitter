@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       mount_devise_token_auth_for 'User', at: 'auth'
-      resources :users
+      resources :users do
+        member do
+          get :following, :followers
+        end
+      end
       resources :tweets
+      resources :follow_relationships, only: [:create, :destroy]
     end
   end
 end
