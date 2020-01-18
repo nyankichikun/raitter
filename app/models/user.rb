@@ -19,6 +19,4 @@ class User < ApplicationRecord
     :rememberable, :trackable, :validatable, :lockable
     #:confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
-
-  has_secure_password
 end
