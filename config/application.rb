@@ -31,5 +31,8 @@ module Raitter
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.autoload_paths += %W(#{config.root}/lib/autoload)
+    config.paths.add 'lib', eager_load: true
   end
 end
