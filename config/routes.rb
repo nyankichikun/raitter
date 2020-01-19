@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       end
       resources :tweets
       resources :follow_relationships, only: [:create, :destroy]
-      resources :favorites, only: [:create, :destroy]
+      resources :favorites,            only: [:create, :destroy]
+      resources :rooms,                only: [:index, :create, :destroy]
+      resources :entries,              only: [:index, :create, :destroy]
     end
   end
 end
