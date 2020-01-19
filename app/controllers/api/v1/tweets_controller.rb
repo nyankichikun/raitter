@@ -1,8 +1,8 @@
 class Api::V1::TweetsController < ApplicationController
-  before_action :authenticate?, only: [:create]
+  before_action :authenticate?, only: [:index, :create]
+  before_action :set_timeline,  only: [:index]
 
   def index
-    @tweets = Tweet.all
     render json: @tweets
   end
 
@@ -17,6 +17,10 @@ class Api::V1::TweetsController < ApplicationController
   end
 
   private
+
+  def set_timeline
+    @tweets = Tweet.timeline(current_api_v1_user.following)
+  end
 
   def tweet_params
     params.permit(:content)

@@ -2,6 +2,10 @@ class Tweet < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :user
 
+  scope :timeline, lambda {|following|
+    Tweet.where(user_id: following)
+  }
+
   def nice(user)
     favorites.create(user_id: user.id)
   end
