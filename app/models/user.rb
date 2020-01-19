@@ -2,6 +2,11 @@ class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  has_many :entries
+  has_many :rooms, through: :entries
+  has_many :messages
+
+
   has_many :active_relationships,
     class_name:  "FollowRelationship",
     foreign_key: "follower_id",
