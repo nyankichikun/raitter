@@ -8,6 +8,13 @@ class ApplicationController < ActionController::API
     true
   end
 
+  def entry_room?
+    if Entry.where(user_id: current_api_v1_user, room_id: params[:room_id]).blank?
+      return render json: { error: 'invalid request'}, status: 401
+    end
+    true
+  end
+
   private
 
   def invalid_request?
