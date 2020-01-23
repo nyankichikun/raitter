@@ -2,7 +2,7 @@ class Api::V1::FollowRelationshipsController < ApplicationController
   before_action :authenticate?, only: [:create, :destroy]
 
   def create
-    user = User.find_by_uid(params[:uid])
+    user = User.find_by_id(params[:user_id])
 
     if !current_api_v1_user.following?(user)
       current_api_v1_user.follow(user)
