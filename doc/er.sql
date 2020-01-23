@@ -42,11 +42,11 @@ CREATE TABLE `Tweet` (
 DROP TABLE IF EXISTS `FollowRelationship`;
 
 CREATE TABLE `FollowRelationship` (
-  `relation_id` INTEGER NOT NULL,
+  `id` INTEGER NOT NULL,
   `follow_id` INTEGER NOT NULL,
   `follower_id` INTEGER NOT NULL DEFAULT NULL,
-  UNIQUE KEY (`relation_id`),
-KEY (`relation_id`)
+  UNIQUE KEY (`id`),
+KEY (`id`)
 );
 
 -- ---
@@ -57,11 +57,11 @@ KEY (`relation_id`)
 DROP TABLE IF EXISTS `Favorite`;
 
 CREATE TABLE `Favorite` (
-  `relation_id` INTEGER NOT NULL,
+  `id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
   `tweet_id` INTEGER NOT NULL,
-KEY (`relation_id`),
-  UNIQUE KEY (`relation_id`)
+KEY (`id`),
+  UNIQUE KEY (`id`)
 );
 
 -- ---
@@ -74,6 +74,7 @@ DROP TABLE IF EXISTS `Room`;
 CREATE TABLE `Room` (
   `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `name` VARCHAR NOT NULL,
+  `public` VARCHAR NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`),
   UNIQUE KEY (`name`)
 );
@@ -101,11 +102,11 @@ CREATE TABLE `Message` (
 DROP TABLE IF EXISTS `Entry`;
 
 CREATE TABLE `Entry` (
-  `relation_id` INTEGER NOT NULL,
+  `id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
   `room_id` INTEGER NOT NULL,
-  PRIMARY KEY (`relation_id`),
-KEY (`relation_id`)
+  PRIMARY KEY (`id`),
+KEY (`id`)
 );
 
 -- ---
@@ -142,13 +143,13 @@ ALTER TABLE `Entry` ADD FOREIGN KEY (room_id) REFERENCES `Room` (`id`);
 -- ('','','','');
 -- INSERT INTO `Tweet` (`id`,`content`,`user_id`) VALUES
 -- ('','','');
--- INSERT INTO `FollowRelationship` (`relation_id`,`follow_id`,`follower_id`) VALUES
+-- INSERT INTO `FollowRelationship` (`id`,`follow_id`,`follower_id`) VALUES
 -- ('','','');
--- INSERT INTO `Favorite` (`relation_id`,`user_id`,`tweet_id`) VALUES
+-- INSERT INTO `Favorite` (`id`,`user_id`,`tweet_id`) VALUES
 -- ('','','');
--- INSERT INTO `Room` (`id`,`name`) VALUES
--- ('','');
+-- INSERT INTO `Room` (`id`,`name`,`public`) VALUES
+-- ('','','');
 -- INSERT INTO `Message` (`id`,`content`,`user_id`,`room_id`) VALUES
 -- ('','','','');
--- INSERT INTO `Entry` (`relation_id`,`user_id`,`room_id`) VALUES
+-- INSERT INTO `Entry` (`id`,`user_id`,`room_id`) VALUES
 -- ('','','');

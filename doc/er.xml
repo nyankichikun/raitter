@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+i<?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
 <!-- Active URL: https://ondras.zarovi.cz/sql/demo/?keyword=default -->
 <sql>
@@ -70,7 +70,7 @@
 </key>
 </table>
 <table x="864" y="100" name="FollowRelationship">
-<row name="relation_id" null="0" autoincrement="0">
+<row name="id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 </row>
 <row name="follow_id" null="0" autoincrement="0">
@@ -82,14 +82,14 @@
 <default>NULL</default><relation table="User" row="id" />
 </row>
 <key type="UNIQUE" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 <key type="INDEX" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 </table>
-<table x="1125" y="203" name="Favorite">
-<row name="relation_id" null="0" autoincrement="0">
+<table x="1128" y="191" name="Favorite">
+<row name="id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 </row>
 <row name="user_id" null="0" autoincrement="0">
@@ -101,10 +101,10 @@
 <relation table="Tweet" row="id" />
 </row>
 <key type="INDEX" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 <key type="UNIQUE" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 </table>
 <table x="231" y="231" name="Room">
@@ -114,6 +114,9 @@
 <row name="name" null="0" autoincrement="0">
 <datatype>VARCHAR</datatype>
 </row>
+<row name="public" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'false'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -141,7 +144,7 @@
 </key>
 </table>
 <table x="440" y="346" name="Entry">
-<row name="relation_id" null="0" autoincrement="0">
+<row name="id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 </row>
 <row name="user_id" null="0" autoincrement="0">
@@ -153,10 +156,10 @@
 <relation table="Room" row="id" />
 </row>
 <key type="PRIMARY" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 <key type="INDEX" name="">
-<part>relation_id</part>
+<part>id</part>
 </key>
 </table>
 </sql>
