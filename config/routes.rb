@@ -8,7 +8,7 @@ Rails.application.routes.draw do
           get :following, :followers
         end
       end
-      resources :tweets
+      resources :tweets,               only: [:index, :create]
       resources :follow_relationships, only: [:create, :destroy]
       resources :favorites,            only: [:create, :destroy]
       resources :rooms,                only: [:index, :create, :destroy]
