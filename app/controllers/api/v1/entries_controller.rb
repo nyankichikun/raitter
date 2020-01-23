@@ -1,8 +1,9 @@
 class Api::V1::EntriesController < ApplicationController
   before_action :authenticate?
-  before_action :set_room, only: ["create"]
-  before_action :set_entries, only: ["index"]
-  before_action :set_entry, only: ["destroy"]
+  before_action :private_room?, only: [:create]
+  before_action :set_room, only: [:create]
+  before_action :set_entries, only: [:index]
+  before_action :set_entry, only: [:destroy]
 
   def index
     render json: { "entries": @entries }
@@ -26,6 +27,13 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   private
+
+  def private_room?
+    if Room.find_by_id(params[:room_id]).public == false
+      return render json: {"error": "can not entry , dirrect message room"}
+    end
+    false
+  end
 
   def set_entries
     @entries = current_api_v1_user.entries
