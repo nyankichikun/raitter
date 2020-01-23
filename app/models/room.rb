@@ -5,4 +5,7 @@ class Room < ApplicationRecord
 
   scope :private_rooms, -> { where(public: false) }
   scope :public_rooms,  -> { where(public: true) }
+  scope :all_rooms, lambda {|user|
+    (user.rooms + Room.public_rooms).uniq
+  }
 end

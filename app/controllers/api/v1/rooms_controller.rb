@@ -1,5 +1,6 @@
 class Api::V1::RoomsController < ApplicationController
   before_action :authenticate?, only: [:index, :create]
+  before_action :entry_room?,   only: [:destroy]
   before_action :set_rooms,     only: [:index]
   before_action :set_room,      only: [:destroy]
 
@@ -44,7 +45,11 @@ class Api::V1::RoomsController < ApplicationController
   private
 
   def set_rooms
-    @rooms = current_api_v1_user.rooms
+    if params[:search].nil?
+      @rooms = current_api_v1_user.rooms
+    elsif params[:search] == "all"
+      @rooms = Room.all_rooms(current_api_v1_user)
+    end
   end
 
   def set_room
